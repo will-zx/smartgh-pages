@@ -77,7 +77,9 @@
       margin: 0;
       min-height: 100dvh;
       display: grid;
-      place-items: center;
+      grid-template-columns: minmax(0, 1fr);
+      justify-items: center;
+      align-content: center;
       padding: clamp(20px, 4vw, 40px) 16px;
       background-color: var(--bg);
       background-image:
@@ -89,12 +91,16 @@
     }
 
     main {
-      width: min(100%, 760px);
+      width: 100%;
+      max-width: 760px;
+      min-width: 0;
     }
 
     .shell {
       position: relative;
-      padding: clamp(24px, 5vw, 44px);
+      width: 100%;
+      min-width: 0;
+      padding: clamp(20px, 5vw, 44px);
       border-radius: var(--radius-xl);
       border: 1px solid var(--border);
       background: var(--surface);
@@ -184,6 +190,8 @@
 
     .card {
       position: relative;
+      min-width: 0;
+      max-width: 100%;
       display: flex;
       align-items: center;
       gap: 14px;
@@ -332,12 +340,26 @@
 
     @media (max-width: 620px) {
       .links {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .card {
+        padding: 14px 16px;
+        gap: 12px;
+      }
+
+      .card--featured {
+        padding: 16px;
       }
 
       .card--featured,
       .card--wide {
         grid-column: auto;
+      }
+
+      .card-sub {
+        white-space: normal;
+        overflow-wrap: anywhere;
       }
 
       footer {
